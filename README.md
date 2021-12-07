@@ -8,7 +8,7 @@ executable file for Windows or Mac OS. It presupposes a pipeline based structure
 are available and can be exported. Sammie also supports a batch mode, that allows to process multiple batches of data through the pipeline automatically.
 Each step of the pipeline has its own parameters and set of documentations, for the users to easily and quickly grasp what each parameter is doing. 
 
-The intention behind Sammie is to enable scientific algorithms that often come with a simple command line interface to be quickly enrichted with a UI that can be exported 
+The intention behind Sammie is to enable scientific algorithms that often come with a simple command line interface to be quickly enriched with a UI that can be exported 
 as an executable file and delivered to end users.
 
 In order to use Sammie in your project fork this repository and start developing. Please refer to the documentation to see how you can integrate your python based algorithms
@@ -28,10 +28,10 @@ __Javascript Based__
 - Recoil for state management
 - Material UI for UI components
 - create-react-app for development/build environment
-- 
+
 __Python based__
 - Eel / Bottle for websocket communication
-- 
+- PyInstaller for creating executables
 
 # Setting up Develompent Environment
 
