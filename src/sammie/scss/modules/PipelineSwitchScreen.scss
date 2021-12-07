@@ -1,0 +1,23 @@
+.pipeline-switch-screen{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	.pipeline-list-entry{
+		max-width: 700px;
+		border-radius: 4px;
+		overflow: hidden;
+		&__text{
+			h2{
+				margin-top: 0;
+			}
+			height: auto;
+			display: flex;
+			flex-direction: column;
+		}
+		&__thumb{
+			min-width: 250px;
+			line-height: 0;
+		}
+	}
+}
