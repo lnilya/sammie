@@ -83,6 +83,8 @@ const BatchCreator: React.FC<IBatchCreatorProps> = ({onDone, className}) => {
         onDone();
     }
     
+    //wether or not all textfields have something put in.
+    const hasAllInput = !pipe.inputs.find((pinp)=>!allInputs[pinp.key])
     const canAdd = selection?.length > 0 && tableData?.length > 0 && selectedParamSet != '';
     
     return (
@@ -147,7 +149,7 @@ const BatchCreator: React.FC<IBatchCreatorProps> = ({onDone, className}) => {
                 </div>
             }
             <div className="batch-creator__btns fl-row fl-align-center">
-                <Button color={'secondary'} variant={'contained'} onClick={loadBatches}>Find Files</Button>
+                <Button color={'secondary'} variant={'contained'} onClick={loadBatches} disabled={!hasAllInput}>Find Files</Button>
                 <div className="fl-grow"/>
                 
                 <span className={'pad-50-right'}>Parameter Set:</span>
