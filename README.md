@@ -127,7 +127,7 @@ https://docs.python.org/3/library/venv.html
 Regarding PIP packages:
 https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
 
-##Caveats in current setup
+## Caveats in current setup
 
 ### tmp folder
 React-Scripts is configured to reload if any member of the public folder changes. However the tmp folder created by 

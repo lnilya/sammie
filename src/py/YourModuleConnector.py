@@ -29,5 +29,8 @@ class YourModuleConnector(ModuleConnector):
         if moduleName == 'PreProcessing':
             from src.py.modules.PreProcessing import PreProcessing
             return PreProcessing(moduleID,session)
+        elif moduleName == 'Borders':
+            from src.py.modules.Borders import Borders
+            return Borders(moduleID,session)
         # %NEW_MODULE%
         # Keep the New Module Comment at this location, for automatically adding new modules via scripts. Do not delete it, or the script will not work.

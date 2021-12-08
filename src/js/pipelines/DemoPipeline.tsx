@@ -5,6 +5,8 @@ import {Pipeline} from "../../sammie/js/types/pipelinetypes";
 import ResponsiveEmbed from 'react-responsive-embed'
 import * as PreProcessingParams from '../modules/PreProcessing/params'
 import PreProcessing from "../modules/PreProcessing/PreProcessing";
+import * as BordersParams from '../modules/Borders/params'
+import Borders from "../modules/Borders/Borders";
 //%NEWMODULE_IMPORT%
 
 const inputKeys = {
@@ -12,11 +14,12 @@ const inputKeys = {
 }
 const dataKeys = {
     processedImage: 'Processed Image', //example, some step for example adds these two images into one.
+    borderedImage: 'Bordered Image', //example, some step for example adds these two images into one.
 }
 
 const helpScreen = <div>
     Here is the main Help Component for this Pipeline. You can even add a Video like so:
-    <ResponsiveEmbed src='https://www.youtube.com/embed/QtzI1SwOdbY' allowFullScreen />
+    <ResponsiveEmbed src='https://www.youtube.com/embed/QtzI1SwOdbY' allowFullScreen/>
 </div>
 
 function getPipeline(): Pipeline {
@@ -27,18 +30,26 @@ function getPipeline(): Pipeline {
         steps: [
             //No Steps defined yet. Use the main create Script to add Steps automatically.
             //This will work, as long as you keep the comment below.
-            { 
-            title:'PreProcessing',
-            moduleID:'PreProcessing',
-            renderer: <PreProcessing/>,
-            parameters:PreProcessingParams.parameters,
-            inputKeys:{in:inputKeys.rawImage},
-            outputKeys:{out:dataKeys.processedImage}
-        } as PreProcessingParams.Step,
-        //%NEWMODULE_STEP%
+            {
+                title: 'PreProcessing',
+                moduleID: 'PreProcessing',
+                renderer: <PreProcessing/>,
+                parameters: PreProcessingParams.parameters,
+                inputKeys: {in: inputKeys.rawImage},
+                outputKeys: {out: dataKeys.processedImage}
+            } as PreProcessingParams.Step,
+            {
+                title: 'Borders',
+                moduleID: 'Borders',
+                renderer: <Borders/>,
+                parameters: BordersParams.parameters,
+                inputKeys: {in:dataKeys.processedImage},
+                outputKeys: {out:dataKeys.borderedImage}
+            } as BordersParams.Step,
+            //%NEWMODULE_STEP%
         ],
         
-        disableBatchMode:true, //wether or not batch mode is allowed.
+        disableBatchMode: true, //wether or not batch mode is allowed.
         
         name: 'Demo', //name of your pipeline
         
@@ -55,22 +66,41 @@ function getPipeline(): Pipeline {
         outputs: [
             {
                 requiredInput: dataKeys.processedImage,
-                title:'Sum of Two images',
-                description:'This is the description that appears in the Export file screen.',
+                title: 'Result of Step 1',
+                description: 'This is the description that appears in the Export file screen.',
                 
                 //Should define a suggestion function for naming the output, makes it a lot easier for user to store files.
-                suggestDestinationOutput:{
-                    pipelineInputKey:inputKeys.rawImage,
-                    transform:suggestSuffixedFileName('_sum','png')
+                suggestDestinationOutput: {
+                    pipelineInputKey: inputKeys.rawImage,
+                    transform: suggestSuffixedFileName('_processed', 'jpg')
                 },
+            },
+            {
+                requiredInput: dataKeys.borderedImage,
+                title: 'Result of Step 2',
+                description: 'This is the description that appears in the Export file screen.',
+                
+                //Should define a suggestion function for naming the output, makes it a lot easier for user to store files.
+                suggestDestinationOutput: {
+                    pipelineInputKey: inputKeys.rawImage,
+                    transform: suggestSuffixedFileName('_bordered', 'png')
+                },
+            }
+        ],
+        aggregatorOutputs: [
+            {
+                aggregatorID: 'appendToDemoCSV',
+                title: 'CSV Output',
+                description: 'For Demo purposes appends some data from the processed images into a CSV file',
+                requiredInputs: [dataKeys.processedImage]
             }
         ],
         
         //Info for user
-        descriptions:{
-            title:'Demo Pipeline',
-            description:'This description appears in switch pipeline screen.',
-            helpscreen:helpScreen
+        descriptions: {
+            title: 'Demo Pipeline',
+            description: 'This description appears in switch pipeline screen.',
+            helpscreen: helpScreen
         }
     }
 }

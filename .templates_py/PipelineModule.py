@@ -36,13 +36,13 @@ class __NAME__(ModuleBase):
             param1, param2 = self.unpackParams(**params)
 
             #get the input that this step is working on
-            someInput = self.session.getData(self.keys.inSomeInputKey)
+            someInput = self.session.getData(self.keys.inPreprocessedImg)
 
             #do something with it...
 
             #Required: Notify the pipeline that the processed data is now available, so that the user can step to the next step
             #of the UI.
-            self.onGeneratedData(self.keys.outSomeOutputKey, someInput, params)
+            self.onGeneratedData(self.keys.outBorderedImage, someInput, params)
 
             #Generate an output that will go to javascript for displaying on the UI side
             return {'demoResult':'Somethign for JS'}
