@@ -42,7 +42,7 @@ const BatchCreator: React.FC<IBatchCreatorProps> = ({onDone, className}) => {
     const [tableData, setTableData] = useState([]);
     const [selection, setSelection] = React.useState([]);
     const [allParamSets, setAllParamSets] = useState<ParamSet[]>(() => Object.values(store.loadParameterSets(true)) || []);
-    const [selectedParamSet, setSelectedParamSet] = useState<string>('');
+    const [selectedParamSet, setSelectedParamSet] = useState<string>(PARAM_SET_NAME_CURRENT);
     
     const loadBatches = async () => {
         var allExt = [];
@@ -155,7 +155,6 @@ const BatchCreator: React.FC<IBatchCreatorProps> = ({onDone, className}) => {
                 <span className={'pad-50-right'}>Parameter Set:</span>
                 <FormControl variant="outlined">
                     <NativeSelect value={selectedParamSet} onChange={e => setSelectedParamSet(e.target.value)}>
-                        <option key={'none'} value={''}>Please Select...</option>
                         <option key={'cur'} value={PARAM_SET_NAME_CURRENT}>Current Parameters</option>
                         {allParamSets.map((k, i) => {
                                 return <option key={k.name} value={k.name}>{k.name}</option>
