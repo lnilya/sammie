@@ -15,7 +15,8 @@ In order to use Sammie in your project fork this repository and start developing
 
 For an example of how a large set of pipelines/steps and steps can be used with SAMMIE, check out [HARLEY](https://github.com/lnilya/harley). HARLEY is a software 
 designed to work with yeast fluorescence microscopy images and can do a range of things through different pipelines: Detect cell outlines, Denoise fluorescence microscopy images,
-train a model to detect features of interest in these images and finally batch process large sets of images using the trained model. 
+train a model to detect features of interest in these images and finally batch process large sets of images using the trained model. The repository contians links to 
+videos to see the software in action.
 
 ## Tech Stack
 
@@ -37,7 +38,7 @@ __Python based__
 
 It is much easier to use an IDE like pycharm, hence it will do most installation steps for you.
 
-##1. Setting Up Virtual Environment
+## 1. Setting Up Virtual Environment
 You should have python installed. If not here is a link: https://www.python.org/downloads/release/python-382/
 
 All the below steps assume you are in the root folder, where this readme file is located. If not open the console and type in
@@ -45,18 +46,19 @@ All the below steps assume you are in the root folder, where this readme file is
 cd path/to/my/folder
 ```
 
-Supposing that the frontend code has already been compiled all you need to do is setup the python virtual environment.
-
-This needs to be done only once, after that you go to step 2 directly.  
+First thing you need to do is to set up the virtual environment, which will conain
+all the packages necessary for the server side of SAMMIE to run. An IDE like PYCharm will
+ask you to set it up automatically, which is the easier option. To do it manually 
+follow instructions below.
 
 ### For MacOS/Linux
 Initialize Environment:
 ```
-python3 -m venv .venv
+python3 -m venv venv
 ```
 Activate Environment:
 ```
-source .venv/bin/activate
+source venv/bin/activate
 ```
 Upgrade Pip, optional:
 ```
@@ -66,14 +68,16 @@ Install Required Python Packages:
 ```
 python3 -m pip install -r requirements.txt
 ```
+You need to do this step only once. 
+
 ### For Windows:
 Initialize environment:
 ```
-python -m venv .venv
+python -m venv venv
 ```
 Activate Environment:
 ```
-.venv\Scripts\activate.bat
+venv\Scripts\activate.bat
 ```
 Upgrade Pip, optional:
 ```
@@ -83,14 +87,21 @@ Install Required Python Packages:
 ```
 python -m pip install -r requirements.txt
 ```
+You need to do this step only once.
 
 ## 2. Starting the frontend
 
-Use yarn or npm to install the required packages. The node version used is 14.5.0 (npm 6.14.5) while it might work with other versions, please check for this verson if problems arise.
+It is recommended that you use yarn to install the packages, because a yarn.lock file is 
+included in this repository with the exact versions of the packages. You can install 
+yarn globally via npm:
+```
+npm i -g yarn
+```
+
+Navigate to your product folder and run the installation of the packages:
 ```
 yarn install
 ```
-
 To start the JS frontend use the following script:
 ```
 yarn start:js
@@ -100,13 +111,24 @@ When running in development please use port 3000, instead of 1234: http://localh
 
 ## 3. Starting the backend
 
-In an IDE like pycharm the best way is to simply debug/execute the index.py file using the buttons on the top right.
+In an IDE like PyCharm the best way is to simply debug/execute the index.py file using the buttons on the top right.
+Make sure to include the "--develop" argument for development. 
 
-A second way is to use yarn/npm to start the python backend for windows or mac os respectively: 
+A manual way is to use yarn to start the python backend for windows or mac os respectively:
+
+#### Mac OS:
 ```
-yarn startwin:eel
-yarn start:eel
+yarn start:py
+or
+python3 index.py --develop
 ```
+#### Windows:
+```
+yarn startwin:py
+or 
+python index.py --develop
+```
+
 
 When not working with PyCharm or an IDE that does it for you, you might to activate the virtual environment first.
 
