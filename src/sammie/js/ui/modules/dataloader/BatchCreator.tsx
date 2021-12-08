@@ -12,7 +12,7 @@ import * as server from '../../../eel/eel'
 import {EelResponse} from '../../../eel/eel'
 import {DataGrid, GridColDef} from '@mui/x-data-grid';
 import ConfirmToolTip from "../../elements/ConfirmToolTip";
-import {addBatches} from "../../../pipelines/pipeline";
+import {addBatches, unloadPipeline} from "../../../pipelines/pipeline";
 import * as store from "../../../state/persistance";
 import {PARAM_SET_NAME_CURRENT, ParamSet} from "../../../state/persistance";
 
@@ -80,6 +80,8 @@ const BatchCreator: React.FC<IBatchCreatorProps> = ({onDone, className}) => {
     const onApplyFoundFiles = (overwrite: boolean) => {
         const filesToAdd = result.data.filter((e, i) => selection.indexOf(i) != -1)
         addBatches(pipe, filesToAdd, overwrite,selectedParamSet);
+        //since batches have changed we need to unload the currently executed pipeline
+        if(overwrite) unloadPipeline()
         onDone();
     }
     
