@@ -35,6 +35,7 @@ const Sidebar:React.FC<ISidebarProps> = () => {
         ,1000)
     },[curParams])
     
+
     const onSetParameter = (conf:Parameter<any>,value:any)=>{
         setPipelineParameterValue(conf,value);
     }
