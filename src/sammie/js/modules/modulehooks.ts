@@ -75,7 +75,7 @@ export function useStepHook<Inputs, Parameters, Step extends PipelineStep<any, a
         const runAlgorithm:eventbus.ListenerFunction<void,eventbus.RunPipelineStepSyncResult> = async () => {
             console.log(`[${curStep.moduleID}] RUNNING STEP`);
             
-            if (overlay != null) return {moduleID:curStep.moduleID, success:false, error: 'Cant run algorithm while overlay is active or somethign else is running'};
+            if (overlay != null) return {moduleID:curStep.moduleID, success:false, error: 'Can\'t run algorithm while overlay is active or something else is running'};
             var changedInputs = !deepEqual(curInputs, lastRunSettings?.inputs);
     
             var changedParams = false;
@@ -100,8 +100,7 @@ export function useStepHook<Inputs, Parameters, Step extends PipelineStep<any, a
                 }
             }
             
-            var needRun = changedParams || changedInputs;
-            
+            var needRun = curBatch.timestamp != lastRunSettings?.batchTimeStamp || changedParams || changedInputs;
             
             setLastRunSettings({inputs: curInputs, params: curParams})
             
