@@ -9,6 +9,7 @@ interface IDisplayOptionsProps {
     settings?: Array<DisplayOptionSetting>,
     modKeys?: Array<DisplayOptionModKey>,
     activeModKeys?:string[]
+    children?:any,
 }
 
 export type DisplayOptionModKey = {
@@ -25,7 +26,7 @@ export type DisplayOptionSetting = {
  * DisplayOptions is a board of true/false switches to direct the display of images or anything else.
  * @author Ilya Shabanov
  */
-const DisplayOptions: React.FC<IDisplayOptionsProps> = ({activeModKeys, modKeys, className, settings}) => {
+const DisplayOptions: React.FC<IDisplayOptionsProps> = ({children,activeModKeys, modKeys, className, settings}) => {
     
     return (
         <div className={`display-options fl-row-start pad-25-left pad-50-ver ${className}`}>
@@ -43,15 +44,19 @@ const DisplayOptions: React.FC<IDisplayOptionsProps> = ({activeModKeys, modKeys,
                                   label={s.label}
                 />
             )}
+            {children}
             {modKeys &&
                 <>
                     <div className="fl-grow"/>
                     <div className={'display-options__mods'}>
                         <strong>Mod keys:</strong>
-                        {modKeys?.map((mc)=>
-                            <Tooltip title={mc.desc} placement={'bottom'} key={mc.name} arrow>
-                                <div className={`btnicon ${activeModKeys.indexOf(mc.name) != -1 ? 'active' : ''}`}>{mc.name}</div>
-                            </Tooltip>
+                        {modKeys?.map((mc)=> {
+                            if(!mc) return null;
+                                return (<Tooltip title={mc.desc} placement={'bottom'} key={mc.name} arrow>
+                                    <div
+                                        className={`btnicon ${activeModKeys.indexOf(mc.name) != -1 ? 'active' : ''}`}>{mc.name}</div>
+                                </Tooltip>)
+                            }
                         )}
                     </div>
                 </>
