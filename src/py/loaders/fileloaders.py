@@ -26,7 +26,7 @@ def loadIntensityImage(asPreviewOnly:bool, pipekey:str, filePath:str, **normaliz
     g = __normImage(g, **normalizationParams)
     preview = getPreviewImage(g,pipekey)
 
-    retMeta = {'Width':g.shape[1],'Height':g.shape[0]};
+    retMeta = {'Width':g.shape[1],'Height':g.shape[0]}
 
     return LoaderResult(g,preview['url'],retMeta)
 

@@ -9,7 +9,9 @@ from matplotlib.axes import Axes
 
 from src.sammie.py import settings
 from src.sammie.py import eelutil
-
+from PIL import Image
+#plotly import
+import plotly.express as px
 
 # Will convert a grayscale float [0-1] image into an RGB image with the given colormap. See
 # matplotlib colormaps for cmap parameter values
@@ -29,7 +31,8 @@ def getPreviewImage(img: np.ndarray, key: str, force: bool = True):
     absPath = eelutil.getFilePath(relPath)
 
     if not os.path.exists(absPath) or force:
-        imageio.imsave(absPath, img)
+        #save imge
+        Image.fromarray((img * 255).astype(np.uint8)).save(absPath)
 
     return {
         'url': eelutil.getFileURL(relPath, force),
