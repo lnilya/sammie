@@ -34,6 +34,17 @@ __Python based__
 - Eel / Bottle for websocket communication
 - PyInstaller for creating executables
 
+Tested on NPM 18.0 and Python 3.11 
+
+## Advantages of Sammie
+
+- Hot Reloading with React while you develop
+- Python debugging while you develop 
+- Passing of images from python to JS, through a temp folder (which is a bit tricky and always left out of JS-Python tutorials)
+- Bundling as an executable for Windows and Mac OS
+
+Essentially it is a simple way to get started on a project that requires a modern UI for a python algorithm.
+
 # Setting up Develompent Environment
 
 It is much easier to use an IDE like pycharm, hence it will do most installation steps for you.

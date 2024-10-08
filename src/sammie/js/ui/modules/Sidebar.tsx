@@ -47,13 +47,14 @@ const Sidebar:React.FC<ISidebarProps> = () => {
         {curStep.parameters.map((s)=>{
             let vis = s.conditional(curParams);
             if( vis == 'hide') return null;
-            const params = {onParameterChanged:onSetParameter, key:s.key, conf:s, curVal:curParams[s.key], disabled:overlayBlock|| vis == 'disable'};
+            const params = {onParameterChanged:onSetParameter, conf:s, curVal:curParams[s.key], disabled:overlayBlock|| vis == 'disable'};
             
-            if(s.input.type == 'slider') return <ParamSlider {...params}/>;
-            else if( s.input.type == 'text_input') return <ParamTextInput {...params}/>;
-            else if(s.input.type == 'dropdown') return <ParamDropdown {...params}/>;
-            else if(s.input.type == 'checkbox') return <ParamCheckbox {...params}/>;
-            else if(s.input.type == 'separator') return <ParamTitle {...params}/>;
+            const k = s.key
+            if(s.input.type == 'slider') return <ParamSlider {...params} key={k}/>;
+            else if( s.input.type == 'text_input') return <ParamTextInput {...params} key={k}/>;
+            else if(s.input.type == 'dropdown') return <ParamDropdown {...params} key={k}/>;
+            else if(s.input.type == 'checkbox') return <ParamCheckbox {...params} key={k}/>;
+            else if(s.input.type == 'separator') return <ParamTitle {...params} key={k}/>;
             
             return null;
         }

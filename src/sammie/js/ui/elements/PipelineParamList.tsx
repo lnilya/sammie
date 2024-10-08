@@ -50,15 +50,16 @@ const PipelineParamList:React.FC<IPipelineParamListProps> = ({batchIdx,className
                     //may happen if recoil update is not done in one chunk
                     if(thisBatch.batchParameters[s.key] === null || thisBatch.batchParameters[s.key] === undefined) return  null;
                     
-                    const params = {onParameterChanged:onParameterChanged, key:s.key+pipe.name, conf:s,
+                    const params = {onParameterChanged:onParameterChanged, conf:s,
                         curVal:thisBatch.batchParameters[s.key], disabled: vis == 'disable',
                     
                     tooltipPlacement:'top' as TooltipPlacement};
-                    if(s.input.type == 'slider') return <ParamSlider {...params}/>;
-                    else if( s.input.type == 'text_input') return <ParamTextInput {...params}/>;
-                    else if(s.input.type == 'dropdown') return <ParamDropdown {...params}/>;
-                    else if(s.input.type == 'checkbox') return <ParamCheckbox {...params}/>;
-                    else if(s.input.type == 'separator') return <ParamTitle {...params}/>;
+                    const k = s.key+pipe.name
+                    if(s.input.type == 'slider') return <ParamSlider {...params} key={k}/>;
+                    else if( s.input.type == 'text_input') return <ParamTextInput {...params} key={k}/>;
+                    else if(s.input.type == 'dropdown') return <ParamDropdown {...params} key={k}/>;
+                    else if(s.input.type == 'checkbox') return <ParamCheckbox {...params} key={k}/>;
+                    else if(s.input.type == 'separator') return <ParamTitle {...params} key={k}/>;
                     
                     return s.key;
                 })}

@@ -42,13 +42,13 @@ const FileTable:React.FC<IFileTableProps> = ({upFolder, onSelectFolder, allFolde
                 <KeyboardBackspaceIcon/>
                 <span>..</span>
             </div>
-            {allFolders.map(e=>{
+            {allFolders.map((e,i)=>{
                 const folder = <div onClick={!e.access[0] ? null : ()=>onSelectFolder(e)} className={'fl-row-start folder ' + (!e.access[0] ? 'no-access' : '')} key={e.name}>
                     <FolderOpenIcon/>
                     <span>{e.name}</span>
                 </div>
                 if(!e.access[0]){
-                    return <Tooltip title={'You do not have permissions to read this folder. Change it in your OS and return here if you need access.'} arrow placement={"bottom"}>
+                    return <Tooltip key={"tt" + i} title={'You do not have permissions to read this folder. Change it in your OS and return here if you need access.'} arrow placement={"bottom"}>
                         {folder}
                     </Tooltip>
                 }else{

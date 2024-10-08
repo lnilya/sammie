@@ -139,11 +139,11 @@ const BatchCreator: React.FC<IBatchCreatorProps> = ({onDone, className}) => {
             <AnimateHeight height={tableData?.length ? 400 : 0}>
                 <div className="batch-creator__table-wrapper pad-100-bottom">
                     <DataGrid columns={columns}
-                              onSelectionModelChange={(i) => setSelection(i)}
-                              selectionModel={selection}
-                              pageSize={5}
+                              onRowSelectionModelChange ={(i) => setSelection(i as number[])}
+                              rowSelectionModel={selection}
+                              // pageSize={5}
                               checkboxSelection
-                              rowsPerPageOptions={[5]}
+                              // rowsPerPageOptions={[5]}
                               rows={tableData}/>
                 </div>
             </AnimateHeight>

@@ -1,4 +1,6 @@
+
 # coding: utf-8
+print("Starting Server (May take a while)...")
 import sys
 
 from src.sammie.py import settings

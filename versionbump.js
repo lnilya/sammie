@@ -10,7 +10,7 @@ const pacakgeJSON = './package.json'
 
 function changeHTML(v) {
     var data = fs.readFileSync(htmlfile, 'utf8')
-    data = data.replace(/<title>Harley - v.*?<\/title>/ig, "<title>Harley - v "+v+"</title>");
+    data = data.replace(/<title>Test - v.*?<\/title>/ig, "<title>Harley - v "+v+"</title>");
     fs.writeFileSync(htmlfile, data);
     console.log(`Replaced Index.html`);
 }
@@ -18,7 +18,7 @@ function changePackage(v) {
     var data = fs.readFileSync(pacakgeJSON, 'utf8')
     data = data.replace(/("version":\s)"(.*?)"/ig, `$1"${v}"`);
     v = v.replace('.','-')
-    data = data.replace(/harley-(.*?)\s/ig, `harley-${v} `);
+    data = data.replace(/test-(.*?)\s/ig, `harley-${v} `);
     fs.writeFileSync(pacakgeJSON, data);
     console.log(`Replaced Package.json`);
 }
