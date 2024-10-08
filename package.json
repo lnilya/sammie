@@ -28,14 +28,15 @@
     "build:js": "react-scripts build",
     "start:py": "python3 index.py --develop",
     "startwin:py": "python index.py --develop",
-    "build:py": "python3 -m eel index.py build --name test-1-0.0 --onefile --icon icon.icns --console",
-    "buildwin:py": "python -m eel index.py build --onefile --name test-1-0.0 --icon icon.ico",
+    "build:py": "python3 -m eel index.py build --name test-1-0.0 --onedir --icon icon.icns --console",
+    "buildwin:py": "python -m eel index.py build --onedir --name test-1-0.0 --icon icon.ico",
     "clean:build": "rm -rf build dist",
     "start": "npm-run-all -p start:*",
     "build": "npm-run-all clean:build build:*",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@typescript-eslint/eslint-plugin": "^8.8.1",
     "@typescript-eslint/parser": "^8.8.1",
     "colors": "^1.4.0",
