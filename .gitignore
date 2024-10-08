@@ -4,3 +4,5 @@ dist
 node_modules
 tmp
 __pycache__
+/test-1-0.0.spec
+/yarn.lock
